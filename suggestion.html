@@ -11,10 +11,18 @@
             this.i--;
             var container = document.getElementById(i);
         }
+        if(e.keyCode == 8 || e.keyCode==46){
+            var cont = document.getElementById("form");
+        var child = document.getElementById("hint");
+        cont.removeChild(child); 
+        var input = document.createElement("div");
+		input.id="hint"; 
+		cont.appendChild(input);
+        }
 
         return false;
     };
-
+        
     function show(str){
         var a ;
         console.error("res");
@@ -35,17 +43,22 @@
     };
     
     function dis(str){
+    var cont = document.getElementById("form");
+        var child = document.getElementById("hint");
+        cont.removeChild(child); 
+        var input = document.createElement("div");
+		input.id="hint"; 
+		cont.appendChild(input);
         var container=document.getElementById("hint");
         var res = str.split(","); 
        
         for(var j=0;j<res.length;j++){
             var input = document.createElement('li');
             input.id=j; 
-            /*
-            input.onclick=function(){
+            input.onclick=function(this.data){
                 var fill =document.getElementById("hint");
                 fill.value=this.firstChild.data;
-            }*/
+            }
         input.onmouseover="this.style.cursor='pointer'"
         input.onmouseout="this.style.cursor='default'"
 		container.appendChild(input); 
@@ -54,9 +67,10 @@
         container2.appendChild(document.createTextNode(res[j]));
         i++;
     }
+    
 };
 </script>
-<form action="#">
+<form action="#" id=form>
     <input id="1" type="text" name="txt" onkeyup="show(this.value)" onkeypress="handle(event)" />
     <div id="hint" ></div>
 </form>
