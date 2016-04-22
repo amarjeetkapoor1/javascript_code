@@ -29,27 +29,28 @@
                     dis(a);
                 }
             };
-            xmlhttp.open("GET", "hello.py?q=" + str, true);
+            xmlhttp.open("GET", "hello.php?q=" + str, true);
             xmlhttp.send();   
         }
     };
     
     function dis(str){
-       
         var container=document.getElementById("hint");
         var res = str.split(","); 
-        console.error(res);
+       
         for(var j=0;j<res.length;j++){
-            var input = document.createElement('span');
+            var input = document.createElement('li');
             input.id=j; 
-            input.onclick=function(this.firstChild.data){
+            /*
+            input.onclick=function(){
                 var fill =document.getElementById("hint");
                 fill.value=this.firstChild.data;
-            }
+            }*/
         input.onmouseover="this.style.cursor='pointer'"
         input.onmouseout="this.style.cursor='default'"
 		container.appendChild(input); 
-		var container2 = document.getElementById(i);          
+		var container2 = document.getElementById(j);
+		 console.error(res[j]);          
         container2.appendChild(document.createTextNode(res[j]));
         i++;
     }
