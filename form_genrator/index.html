@@ -1,0 +1,79 @@
+<html>
+<head>
+    <script type='text/javascript'>	
+    var i=0
+        function addFields(){
+        	this.i=this.i+1
+     
+            var container = document.getElementById("form");
+            
+            var input = document.createElement("div");
+			input.id=i; 
+			container.appendChild(input); 
+			var container = document.getElementById(i);          
+            
+            container.appendChild(document.createTextNode("Member " + (i)));
+            
+            
+            var input = document.createElement("input");
+            input.type = "text";
+            input.name = "member" +i;
+            container.appendChild(input);
+            container.appendChild(document.createTextNode("Member Position" + (i)));
+            var input = document.createElement("input");
+            input.type = "Number";
+            input.name = "member postion" + i;
+            input.min=0;
+            container.appendChild(input);
+            container.appendChild(document.createTextNode("Member Type" + (i)));
+            
+            var input = document.createElement("select");
+            input.name = "member type" + i;
+            input.id="membertype"+i
+            
+			container.appendChild(input);                
+			var select = document.getElementById("membertype"+i);
+            var li =["text", "radio" ,"dropdown"];
+            for( var j=0 ;j<li.length;j++){
+	            var input =document.createElement("option");
+	            input.id=li[j]+i;
+	            input.value=li[j];
+	            select.appendChild(input);
+				var t = document.getElementById(li[j]+i);
+	            var option=document.createTextNode(li[j]);
+	            t.appendChild(option);
+	            
+	            
+           }
+            
+           	var input = document.createElement("a");
+           	input.href="#"
+           	input.onclick=function(){ 
+           		id = this.parentElement.getAttribute('id');
+           		deleteNode(id);
+           	};
+           	input.id="DELETE"+i;
+            container.appendChild(input);
+            var container1 = document.getElementById("DELETE"+i);
+            container1.appendChild(document.createTextNode("DELETE"));
+            container.appendChild(document.createElement("br"));
+        }
+        
+        function deleteNode(id){
+        	alert("delete field "+id);
+        	var container = document.getElementById("form");
+       		var child = document.getElementById(id);
+       		container.removeChild(child); 
+       	}
+    </script>
+</head
+<body>
+    <a href="#" id="filldetails" onclick="addFields()">ADD FIELD</a>
+    <div id="container">
+    	<form id="form" action="form.py" method="post" >
+    	
+    	<input type=submit >
+    		
+    		</from>
+</body>
+</html>

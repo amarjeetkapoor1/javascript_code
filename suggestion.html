@@ -1,0 +1,63 @@
+<html>
+<script type='text/javascript'>	
+    i=0;
+    function handle(e){
+        
+        if(e.keyCode === 40){
+            this.i++;
+            var container = document.getElementById(i);
+        }
+        else{
+            this.i--;
+            var container = document.getElementById(i);
+        }
+
+        return false;
+    };
+
+    function show(str){
+        var a ;
+        console.error("res");
+        if (str.length == 0){
+            return;
+        } else {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    a = xmlhttp.responseText;
+                    console.error("res");
+                    dis(a);
+                }
+            };
+            xmlhttp.open("GET", "hello.py?q=" + str, true);
+            xmlhttp.send();   
+        }
+    };
+    
+    function dis(str){
+       
+        var container=document.getElementById("hint");
+        var res = str.split(","); 
+        console.error(res);
+        for(var j=0;j<res.length;j++){
+            var input = document.createElement('span');
+            input.id=j; 
+            input.onclick=function(this.firstChild.data){
+                var fill =document.getElementById("hint");
+                fill.value=this.firstChild.data;
+            }
+        input.onmouseover="this.style.cursor='pointer'"
+        input.onmouseout="this.style.cursor='default'"
+		container.appendChild(input); 
+		var container2 = document.getElementById(i);          
+        container2.appendChild(document.createTextNode(res[j]));
+        i++;
+    }
+};
+</script>
+<form action="#">
+    <input id="1" type="text" name="txt" onkeyup="show(this.value)" onkeypress="handle(event)" />
+    <div id="hint" ></div>
+</form>
+</body>
+</html>
