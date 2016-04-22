@@ -6,6 +6,7 @@
         if(e.keyCode === 40){
             this.i++;
             var container = document.getElementById(i);
+            container.style.backgroundColor = 'green';
         }
         else{
             this.i--;
@@ -13,11 +14,11 @@
         }
         if(e.keyCode == 8 || e.keyCode==46){
             var cont = document.getElementById("form");
-        var child = document.getElementById("hint");
-        cont.removeChild(child); 
-        var input = document.createElement("div");
-		input.id="hint"; 
-		cont.appendChild(input);
+            var child = document.getElementById("hint");
+            cont.removeChild(child); 
+            var input = document.createElement("div");
+		    input.id="hint"; 
+		    cont.appendChild(input);
         }
 
         return false;
@@ -25,7 +26,7 @@
         
     function show(str){
         var a ;
-        console.error("res");
+        
         if (str.length == 0){
             return;
         } else {
@@ -33,7 +34,6 @@
             xmlhttp.onreadystatechange = function() {
                 if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                     a = xmlhttp.responseText;
-                    console.error("res");
                     dis(a);
                 }
             };
@@ -55,15 +55,14 @@
         for(var j=0;j<res.length;j++){
             var input = document.createElement('li');
             input.id=j; 
-            input.onclick=function(this.data){
-                var fill =document.getElementById("hint");
-                fill.value=this.firstChild.data;
+            input.onclick=function(){
+                var fill =document.getElementById("in");
+                fill.value=(this.firstChild.data)
             }
         input.onmouseover="this.style.cursor='pointer'"
         input.onmouseout="this.style.cursor='default'"
 		container.appendChild(input); 
-		var container2 = document.getElementById(j);
-		 console.error(res[j]);          
+		var container2 = document.getElementById(j);         
         container2.appendChild(document.createTextNode(res[j]));
         i++;
     }
@@ -71,7 +70,7 @@
 };
 </script>
 <form action="#" id=form>
-    <input id="1" type="text" name="txt" onkeyup="show(this.value)" onkeypress="handle(event)" />
+    <input id="in" type="text" name="txt" autocomplete="off" onkeyup="show(this.value)" onkeypress="handle(event)" />
     <div id="hint" ></div>
 </form>
 </body>
