@@ -1,17 +1,22 @@
 <html>
 <script type='text/javascript'>	
-    i=0;
+    var line=-1;
+    var list=0
     function handle(e){
         
-        if(e.keyCode === 40){
-            this.i++;
-            var container = document.getElementById(i);
+        if(e.keyCode == 40 && line<list){
+            line++;
+            var container = document.getElementById(line);
             container.style.backgroundColor = 'green';
+            document.getElementById(line).focus();
         }
-        else{
-            this.i--;
-            var container = document.getElementById(i);
-        }
+         if(e.keyCode == 38 && line>=0){
+            line--;
+            var container = document.getElementById(line);
+            container.style.backgroundColor = 'green';
+            document.getElementById(line).focus();
+            
+         }
         if(e.keyCode == 8 || e.keyCode==46){
             var cont = document.getElementById("form");
             var child = document.getElementById("hint");
@@ -27,7 +32,7 @@
     function show(str){
         var a ;
         
-        if (str.length == 0){
+        if (str.length == 0 ){
             return;
         } else {
             var xmlhttp = new XMLHttpRequest();
@@ -64,7 +69,7 @@
 		container.appendChild(input); 
 		var container2 = document.getElementById(j);         
         container2.appendChild(document.createTextNode(res[j]));
-        i++;
+        list=j
     }
     
 };
@@ -75,3 +80,4 @@
 </form>
 </body>
 </html>
+
